@@ -2,9 +2,11 @@
 
 **Εφαρμογή Επαγγελματικής Δικτύωσης (τύπου LinkedIn)**
 
-**Μέλη Ομάδας**
-@giannhskp
-@Sitaras
+#Team
+[gianniskp](https://github.com/giannhskp)
+[sitaras](https://github.com/Sitaras)
+
+
 
 
 ###Γενικά Σχόλια
