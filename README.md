@@ -2,6 +2,8 @@
 
 ### Εφαρμογή Επαγγελματικής Δικτύωσης (τύπου LinkedIn)
 
+<hr/>
+
 ### Team 
 - [gianniskp](https://github.com/giannhskp)
 - [sitaras](https://github.com/Sitaras)
