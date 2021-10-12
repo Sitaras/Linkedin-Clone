@@ -1,6 +1,4 @@
-### Εφαρμογή Επαγγελματικής Δικτύωσης (τύπου LinkedIn)
-
-<hr/>
+# Linkedin-Clone
 
 ### Team 
 - [gianniskp](https://github.com/giannhskp)
