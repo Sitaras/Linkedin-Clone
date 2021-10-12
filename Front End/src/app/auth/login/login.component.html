@@ -1,0 +1,54 @@
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+<div class="container" style="margin-top: 200px;">
+    <div class="row">
+        <div class="col-md-11 mt-60 mx-md-auto">
+            <div class="login-box bg-white pl-lg-5 pl-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6">
+                        <div class="form-wrap bg-white">
+                            <h4 class="btm-sep pb-3 mb-5">Login</h4>
+                            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                            
+                                <div class="form-group row">
+                                        <div class="col-12">
+                                            <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-email"></span>
+                                            <input type="text" id="email" class="form-control" [formControlName]="'email'" name="email" required autofocus
+                                                placeholder="Your Email">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-lock"></span>
+                                            <input type="password" id="password" class="form-control" [formControlName]="'password'" name="password" required
+                                                placeholder="Your Password">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <hr />
+                                <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark btn-block">Sign In
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content text-center">
+                            <div class="border-bottom pb-5 mb-5">
+                                <h3 class="c-black">New to LinkedIn?</h3>
+                                <span font-family="sans-serif" class="txt" style="padding-left: 15px"> <a routerLink="/signup">Sign Up</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

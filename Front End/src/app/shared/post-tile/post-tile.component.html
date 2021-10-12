@@ -1,0 +1,67 @@
+<div  *ngFor="let post of posts">
+  <div class="row post" style="background-color: white;" *ngIf="showPost(post)">
+    <div class="col-md-11">
+        <span class="sublinkedIn-info">
+            <span>Posted by <a class="username" href="/user-profile/{{post.userName}}">{{post.userName}}</a></span>
+            <span> . {{post.duration}}</span>
+        </span>
+      <hr />
+      <div class="post-title">
+        <a class="postname" href="/view-post/{{post.id}}">{{post.postName}}</a>
+      </div>
+      <div>
+        <p class="post-text" [innerHtml]="post.description"></p>
+      </div>
+      <div *ngIf="hasImage(post)">
+        <hr />
+        <div *ngIf="hasVideo(post)">
+          <video class="videoPlayer" controls>
+            <source [src]="post.url" type="video/mp4">
+            <source [src]="post.url" type="video/ogg">
+            Your browser does not support HTML video.
+          </video>
+        </div>
+        <div *ngIf="!hasVideo(post)">
+          <a style="cursor:pointer" (click)="show(post.url)">
+            <img id="imageresource" [src]="post.url" style=" height: 300px;">
+          </a>
+          </div>
+      </div>
+      <hr />
+      <span *ngIf="!isAdmin()">
+            <app-vote-button [post]="post"></app-vote-button>
+            <a class="btnCommments" role="button" (click)="goToPost(post.id)">
+                <fa-icon [icon]="faComments"></fa-icon>
+                Comments({{post.commentCount}})
+            </a>
+            <button class="readPost" (click)="goToPost(post.id)">
+                Read More
+            </button>
+        </span>
+      <span *ngIf="isAdmin()">
+            <button class="readPost" (click)="goToPost(post.id)">
+                Read More
+            </button>
+        </span>
+    </div>
+  </div>
+</div>
+
+
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-3" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+      </div>
+      <div class="modal-body">
+        <img [src]="showurl" id="imagepreview" style="max-width:100%; ">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

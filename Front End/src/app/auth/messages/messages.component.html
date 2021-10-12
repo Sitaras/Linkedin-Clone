@@ -1,0 +1,89 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+  rel="stylesheet">
+<div class="all">
+  <div class="linkedIn-body">
+    <div class="container">
+      <hr />
+      <div class="row">
+        <div class="col-md-2">
+          <div class="overhead-text1">Recent Contacts</div>
+          <div class="row chat-with">
+            <div class="col-md-12 chat-user" *ngFor="let username of contactList">
+              <div *ngIf="isTheSelectedUser(username)">
+                <button class="link" style="color:rgb(4, 29, 255)" (click)="showMessages(username)">{{username}}</button>
+              </div>
+              <div *ngIf="!isTheSelectedUser(username)">
+                <button class="link" style="color:black" (click)="showMessages(username)">{{username}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 ">
+          <div *ngIf="userIsSelected()" class="overhead-text2">{{this.selectedUser}}</div>
+          <div *ngIf="isTheSelectedUser('')" class="overhead-text2">Select a recent contact</div>
+          <div class="row post">
+            <div class="col-md-12">
+              <div *ngIf="userIsSelected()">
+                <div *ngFor="let message of messages">
+                  <div *ngIf="messageIsMine(message)">
+                    <div class="row">
+                      <div class="col-md-7">
+                      </div>
+                      <div class="col-md-5 message2">
+                        <span style="color:black"> {{message.text}}</span>
+                      </div>
+                    </div>
+                    <div class="row mt-0 duration">
+                      <div class="col-md-7">
+                      </div>
+                      <div class="col-md-5">
+                        <span>{{message.duration}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!messageIsMine(message)">
+                    <div class="row">
+                      <div class="col-md-5 message1">
+                        <span style="color:black"> {{message.text}}</span>
+                      </div>
+                      <div class="col-md-7">
+                      </div>
+                    </div>
+                    <div class="row mt-0 duration">
+                      <div class="col-md-5">
+                        <span>{{message.duration}}</span>
+                      </div>
+                      <div class="col-md-7">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+      <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+
+        <div class="row send-message">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2 ">
+              </div>
+              <div class="col-md-7 form-group">
+                                    <textarea class="form-control" [formControlName]="'text'"
+                                              placeholder="Aa"></textarea>
+              </div>
+              <div class="col-md-3">
+                <button type="submit" class="sendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+  </div>
+</div>

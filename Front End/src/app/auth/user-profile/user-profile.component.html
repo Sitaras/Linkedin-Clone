@@ -1,0 +1,285 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="linkedIn-body" *ngIf="currentUser.admin || !notMyProfile()">
+  <div class="container light-style flex-grow-1 container-p-y">
+
+      <h4 class="py-2 mb-4">
+      </h4>
+
+      <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+          <div class="col-md-3 pt-0">
+            <div class="list-group list-group-flush account-settings-links">
+              <a class="list-group-item list-group-item-action " data-toggle="list" (click)="changeIsSelected('bio')"
+                style="cursor: pointer"
+                [ngStyle]="{'font-weight' : isSelected ==  'bio' ? 'bold' : 'normal' }">Bio</a>
+              <a class="list-group-item list-group-item-action" data-toggle="list"
+                (click)="changeIsSelected('posts') " style="cursor: pointer"
+                [ngStyle]="{'font-weight' : isSelected ==  'posts' ? 'bold' : 'normal' }">Posts </a>
+              <a class="list-group-item list-group-item-action" data-toggle="list"
+                (click)="changeIsSelected('jobPosts') " style="cursor: pointer"
+                [ngStyle]="{'font-weight' : isSelected ==  'jobPosts' ? 'bold' : 'normal' }"> Job Posts </a>
+              <a class="list-group-item list-group-item-action" data-toggle="list"
+                (click)="changeIsSelected('comments') " style="cursor: pointer"
+                [ngStyle]="{'font-weight' : isSelected ==  'comments' ? 'bold' : 'normal' }"> Comments </a>
+              <a class="list-group-item list-group-item-action" data-toggle="list"
+                 (click)="goToNetwork() " style="cursor: pointer"
+                 [ngStyle]="{'font-weight' : isSelected ==  'network' ? 'bold' : 'normal' }"> Network </a>
+
+                <div *ngIf="currentUser.admin" class="col-md-3 pt-0">
+                <button class="btn btn-outline-primary"
+                  style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;"
+                  (click)="downloadJson()">Download JSON</button>
+
+                <button class="btn btn-outline-primary"
+                  style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;"
+                  (click)="downloadXML()">Download XML</button>
+                </div>
+
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="tab-content">
+              <div *ngIf="isSelected === 'bio'">
+
+                <div class="card-body media align-items-center">
+                  <div *ngIf="hasImage()">
+                    <img class="testImage" [src]="getImage()">
+                  </div>
+                  <div *ngIf="!hasImage()">
+                    <img src="/assets/default_profile_pic.png" class="testImage">
+                  </div>
+                </div>
+                <hr class="border-light m-0">
+
+                <div class="card-body">
+                  <span style="font-size: large">Profile of: <b>{{name}}</b></span><br /><br />
+                      <div *ngIf="notEmpty(user.workingExperience)">
+                        <span style="font-size: x-large"><i class="fas fa-briefcase"></i> <b> Working Experience:</b></span>.<br />
+                        <div>
+                          <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.workingExperience"></p>
+                        </div>
+                      </div>
+                      <div *ngIf="notEmpty(user.education)">
+                        <hr>
+                        <span style="font-size: x-large"><i class="fas fa-graduation-cap"></i> <b> Education:</b></span>.<br />
+                        <div>
+                          <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.education"></p>
+                        </div>
+                      </div>
+                      <div *ngIf="notEmpty(user.skills)">
+                        <hr>
+                        <span style="font-size: x-large"><i class="fab fa-leanpub"></i> <b> Skills:</b></span>.<br />
+                        <div>
+                          <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.skills"></p>
+                        </div>
+                      </div>
+
+                </div>
+
+              </div>
+              <div  *ngIf="isSelected === 'posts'">
+                <div class="card-body pb-2">
+
+                  Have posted <b>{{postLength}}</b> time(s) and commented
+                  <b>{{commentLength}}</b> time(s).
+                  You can check post and comment history below.
+
+                  <div>
+                    <span style="font-size: x-large"><strong>Posts:</strong></span>
+                  </div>
+                  <div *ngIf="postsExist()" style="margin-right: 10px;">
+                    <app-post-tile [posts]="posts"></app-post-tile>
+                  </div>
+
+                </div>
+              </div>
+
+              <div *ngIf="isSelected === 'jobPosts'">
+                <div class="card-body pb-2">
+                  <div>
+                    <span style="font-size: x-large"><strong>Job Posts:</strong></span>
+                  </div>
+                  <hr />
+                  <div class="row post" *ngFor="let post of jobPosts" style="margin-right: 1px;">
+                    <div class="col-md-11">
+                      <span class="sublinkedIn-info">
+                        <span>Posted by <a class="username" href="/user-profile/{{post.userName}}">{{post.userName}}</a></span>
+                        <span> . {{post.duration}}</span>
+                      </span>
+                      <hr />
+
+                      <div class="post-title">
+                        <div class="field">Job Name:</div>
+                        <p class="post-text">{{post.jobPostName}}</p>
+                      </div>
+                      <div class="post-title">
+                        <div class="field">Company Name: </div>
+                        <p class="post-text">{{post.companyName}}</p>
+                      </div>
+                      <div class="post-title" *ngIf="notEmpty(post.skills)">
+                        <div class="field">Needed Skills: </div>
+                        <div class="post-text" [innerHtml]="post.skills"></div>
+                      </div>
+                      <div class="post-title" *ngIf="notEmpty(post.benefits)">
+                        <div class="field">Job Benefits: </div>
+                        <div class="post-text" [innerHtml]="post.benefits"></div>
+                      </div>
+                      <div class="post-title" *ngIf="notEmpty(post.otherInfo)">
+                        <div class="field">Other Information: </div>
+                        <div class="post-text" [innerHtml]="post.otherInfo"></div>
+                      </div>
+                      <hr />
+                      <span>
+                        <div>
+                          <button class="readPost" (click)="goToJobPost(post.id)">
+                            See Job Post
+                          </button>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div *ngIf="isSelected === 'comments'">
+                <div class="card-body pb-2">
+                  <div>
+                    <span style="font-size: x-large"><strong>Comments on posts:</strong></span>
+                  </div>
+                  <hr />
+                  <div *ngFor="let comment of comments">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm-1">
+                          <div class="thumbnail">
+                            <img class="img-responsive user-photo" [src]="getProfilePic(comment.userName)">
+                          </div>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <a href="/user-profile/{{comment.userName}}">{{comment.userName}} </a><span
+                                class="text-muted">{{comment.duration}}</span>
+                            </div>
+                            <div class="panel-body"> {{comment.text}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<div class="linkedIn-body" *ngIf="!currentUser.admin && notMyProfile()">
+  <div class="container light-style flex-grow-1 container-p-y">
+
+    <h4 class="font-weight-bold py-3 mb-4">
+    </h4>
+
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a class="list-group-item list-group-item-action " >
+              <b>Profile of  </b><a href="user-profile/{{user.username}}" class="username">{{user.username}}</a></a>
+              <br>
+            </div>
+            <div class="col-md-3" style="position: relative; margin-left: 3px;">
+              <div style="text-align: center">
+                <div *ngIf="notMyProfile() && friends()">
+                  <button class="btn btn-outline-primary"
+                  style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;"
+                  (click)="goToSendMessage()">Send Message <i class="fa fa-envelope"> </i></button>
+              </div>
+              <div *ngIf="noFriendshipStatus()">
+                <button class="btn btn-outline-primary"
+                style="background-color: rgb(43, 43, 184); color: white; margin-top: 20px; position: relative; width: 250px;"
+                (click)="sendFriendRequest()">Send Friend Request <i class="fas fa-user-plus"></i></button>
+              </div>
+              <div *ngIf="needToRespond()">
+                <button class="btn btn-outline-primary" (click)="acceptFriendRequest()" style="background-color: green; color: white; margin-top: 20px; position: relative; width: 250px;">Accept
+                  Friend Request <i class="fas fa-check"></i></button>
+                <button class="btn btn-outline-primary" (click)="declineFriendRequest()" style="background-color: red; color: white; margin-top: 20px; position: relative; width: 250px;">Decline
+                  Friend Request <i class="fas fa-times"></i></button>
+              </div>
+              <div *ngIf="waitingForAccept()">
+                <button class="btn btn-outline-primary"
+                style="background-color: lightblue; color: white; margin-top: 20px; pointer-events: none; position: relative; width: 250px;">Friend
+                Request Sent</button>
+                <button class="btn btn-outline-primary" (click)="cancelFriendRequest()"
+                style="background-color: red; color: white; margin-top: 5px; position: relative; width: 250px;">Cancel Friend
+                Request</button>
+              </div>
+              <div *ngIf="friends()">
+                <button class="btn btn-outline-primary"
+                style="background-color: green; color: white; margin-top: 5px; width: 250px; pointer-events: none;">Friends <i
+                class="fas fa-user-friends"></i></button>
+              </div>
+              <div *ngIf="friends()">
+                <button class="btn btn-outline-primary"
+                style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;"
+                (click)="goToNetwork()">See {{user.username}}'s network <i class="fas fa-address-card"></i> </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+
+              <div class="card-body media align-items-center">
+                <div *ngIf="hasImage()">
+                  <img class="testImage" [src]="getImage()">
+                </div>
+                <div *ngIf="!hasImage()">
+                  <img src="/assets/default_profile_pic.png" class="testImage">
+                </div>
+              </div>
+              <hr class="border-light m-0">
+
+              <div class="card-body">
+
+
+                <span style="font-size: x-large"><p class="email">Email : {{user.email}}</p></span>
+                <span style="font-size: x-large"><p class="phone">Phone : {{user.phone}}</p></span>
+                <hr>
+                <div *ngIf="(notEmpty(user.workingExperience) && friends()) || (notEmpty(user.workingExperience) && wePublic() && !friends())">
+                  <span style="font-size: x-large"><i class="fas fa-briefcase"></i> <b> Working Experience:</b></span>.<br />
+                  <div>
+                    <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.workingExperience"></p>
+                  </div>
+                </div>
+                <div *ngIf="(notEmpty(user.education) && friends()) || (notEmpty(user.education) && educationPublic() && !friends())">
+                  <hr>
+                  <span style="font-size: x-large"><i class="fas fa-graduation-cap"></i> <b> Education:</b></span>.<br />
+                  <div>
+                    <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.education"></p>
+                  </div>
+                </div>
+                <div *ngIf="(notEmpty(user.skills) && friends()) || (notEmpty(user.skills) && skillsPublic() && !friends())">
+                  <hr>
+                  <span style="font-size: x-large"><i class="fab fa-leanpub"></i> <b> Skills:</b></span>.<br />
+                  <div>
+                    <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.skills"></p>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

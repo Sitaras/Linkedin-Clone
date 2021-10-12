@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<a class="p-2 votecount">{{post.interestsCount}}</a>
+<a class="p-2">
+                <fa-icon (click)="upvotePost()" class="glyphicon glyphicon-thumbs-up"
+                    [style.color]="post.shownInterest ? 'blue':'gray'"></fa-icon>
+</a>
+

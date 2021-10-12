@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+<div class="all">
+  <div class="linkedIn-body">
+    <div class="container">
+      <div class="row">
+        <h4 class="py-2 mb-4">
+        </h4>
+        <div class="col-md-7">
+          <div class="row postTitle">
+            <div class="post-title">
+              <div class="field" style="color:#0079D3;"> <i class="fas fa-bell"></i> Notifications: </div>
+            </div>
+          </div>
+          <div class="row notifications" *ngIf="isEmpty(notifications)">
+            <div class="col-lg-12">
+              <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                  <div class="table-responsive">
+                    <table class="table user-list">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span class="sublinkedIn-info">
+                            <span> You have no notifications </span>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngFor="let notification of notifications">
+              <div class="row notification" *ngIf="showNotification(notification)">
+                  <div class="col-lg-12">
+                    <div class="main-box no-header clearfix">
+                      <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                          <table class="table user-list">
+                            <thead>
+                              <tr>
+                                <th><span>{{notification.duration}}</span></th>
+                                <th>&nbsp;</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td>
+                                <span class="sublinkedIn-info">
+                                  <span><a class="username" href="/user-profile/{{notification.userName}}">{{notification.userName}}</a>
+                                    {{getMessage(notification)}}
+                                    <a class="username" href="/view-post/{{notification.postId}}"> post</a>
+                                  </span>
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-5">
+            <div style="text-align: center">
+              <button class="btn btn-outline-primarybtn btn-outline-primarybtn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; left: 60%; margin-top: 10px; position: fixed; width: 300px;" (click)="showCommented()">Show Only Comment Notifications</button>
+            </div>
+            <div style="text-align: center">
+              <button class="btn btn-outline-primarybtn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; left: 60%; margin-top: 50px; position: fixed; width: 300px;" (click)="showInterested()">Show Only Interested Notifications</button>
+            </div>
+            <div style="text-align: center">
+              <button class="btn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; left: 60%; margin-top: 90px; position: fixed; width: 300px;" (click)="showAllNotifications()">Show All Notifications</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

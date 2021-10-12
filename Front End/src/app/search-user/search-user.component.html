@@ -1,0 +1,39 @@
+<div class="all">
+  <div class="linkedIn-body">
+    <div class="container">
+      <div class="row">
+        <hr />
+        <hr />
+        <div class="col-md-9">
+          <div class="row postTitle" >
+            <div class="post-title">
+              <div class="field" style="color: #0079D3;">Search results</div>
+            </div>
+          </div>
+          <div class="row post" *ngIf="isEmpty(this.searchResults)">
+            <div class="col-md-12">
+              <span class="sublinkedIn-info">
+                  <span> User not found. </span>
+              </span>
+            </div>
+          </div>
+
+          <div *ngFor="let user of searchResults">
+            <div class="row post">
+              <div class="col-md-8">
+                <span class="sublinkedIn-info">
+                      <a href="/user-profile/{{user}}">{{user}} </a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

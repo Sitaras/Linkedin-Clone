@@ -1,0 +1,133 @@
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+<div class="container" style="margin-top: 200px;">
+    <div class="row">
+        <div class="col-md-11 mt-60 mx-md-auto">
+            <div class="login-box bg-white pr-lg-5 pr-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6 order-md-last">
+                        <div class="form-wrap bg-white">
+                            <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-email"></span>
+                                            <input type="text" [formControlName]="'email'" id="email_address" class="form-control" name="email-address"
+                                                placeholder="Your Email">
+                                            </div>
+                                            <span *ngIf="!signupForm.get('email')!.valid && signupForm.get('email')!.touched" class="help-block" style="color: red;">Please
+                                                enter a valid email</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-account"></span>
+                                            <input type="text" [formControlName]="'username'" class="form-control" placeholder="Your Username">
+                                        </div>
+                                        <span *ngIf="!signupForm.get('username')!.valid && signupForm.get('username')!.touched"
+                                            class="help-block" style="color: red;">Please enter a valid username</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-lock"></span>
+                                            <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password"
+                                                placeholder="Your Password">                                        
+                                        </div>
+                                        <span *ngIf="!signupForm.get('password')!.valid && signupForm.get('password')!.touched"
+                                            class="help-block" style="color: red;">Please enter a valid password</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-lock"></span>
+                                            <input type="password" [formControlName]="'passwordValid'" id="passwordValid" class="form-control" name="passwordValid"
+                                                placeholder="Your Password Again">
+                                        </div>
+                                        <span *ngIf="!signupForm.get('passwordValid')!.valid && signupForm.get('passwordValid')!.touched"
+                                            class="help-block" style="color: red;">Confirm your password</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-account"></span>
+                                            <input type="text" [formControlName]="'name'" class="form-control" placeholder="Your First Name">
+                                        </div>
+                                        <span *ngIf="!signupForm.get('name')!.valid && signupForm.get('name')!.touched" class="help-block" style="color: red;">Please
+                                            enter your name</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-account"></span>
+                                            <input type="text" [formControlName]="'surname'" class="form-control" placeholder="Your Last Name">
+                                        </div>
+                                        <span *ngIf="!signupForm.get('surname')!.valid && signupForm.get('surname')!.touched"
+                                            class="help-block" style="color: red;">Please enter your surname</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-phone"></span>
+                                        <input type="text" [formControlName]="'phone'" class="form-control" placeholder="Your Phone Number">
+                                        </div>
+                                        <span *ngIf="!signupForm.get('phone')!.valid && signupForm.get('phone')!.touched" class="help-block" style="color: red;">Please
+                                            enter your phone</span>
+                                    </div>
+                                </div>
+              
+                                <div class="form-group row" style="margin-top: 5px;">
+                                    <div class="col-md-6">
+                                        <label for="file-upload" class="custom-file-upload">
+                                            <i class="fas fa-upload"></i> Profile Image
+                                        </label>
+                                        <input id="file-upload" type="file" #userPhoto (change)="onFileChanged($event)" name="image"
+                                            autocomplete="off" />
+                                    </div>
+                            
+                                </div>
+                                <hr />
+                                <div class="container row">
+                                    <div class="col-md-12">
+                                        <div *ngIf=message>{{message}}</div>
+                                    </div>
+                                </div>
+                            
+                                <span class="col-md-6 offset-md-4">
+                                    <div class="col-12">
+                                        <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark btn-block">
+                                            Sign Up
+                                        </button>
+                                    </div>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-md-first">
+                        <div class="content text-center">
+                            <div class="border-bottom pb-5 mb-5">
+                                <h3 class="c-black">Existing user?</h3>
+                                <span class="txt" style="padding-left: 15px"> <a routerLink="/login">Log
+                                    In</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

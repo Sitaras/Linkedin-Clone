@@ -1,0 +1,43 @@
+<div class="all">
+  <div class="linkedIn-body">
+    <div class="container">
+      <div class="row">
+        <h4 class="py-2 mb-4">
+        </h4>
+        <div class="col-md-9">
+          <div class="row postTitle">
+            <div class="post-title">
+              <div class="field" style="color: #0079D3;">Friend Requests</div>
+            </div>
+          </div>
+          <div class="row post" *ngIf="isEmpty(requestList)">
+            <div class="col-md-12">
+              <span class="sublinkedIn-info">
+                  <span> You have no friend requests </span>
+              </span>
+            </div>
+          </div>
+
+          <div *ngFor="let request of requestList">
+            <div class="row post">
+              <div class="col-md-8">
+                <span class="sublinkedIn-info">
+                    <span  style="line-height: 100%; text-align: center; vertical-align: bottom">User:
+                      <a href="/user-profile/{{request}}">{{request}} </a>
+                      sent you a friend request</span>
+                </span>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-primary" style="background-color: green; color: white; width: 100px;" (click)="acceptRequest(request)" >Accept</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-primary" style="background-color: red; color: white; width: 100px;" (click)="declineRequest(request)" >Decline</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

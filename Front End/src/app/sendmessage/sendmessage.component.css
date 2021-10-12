@@ -1,0 +1,143 @@
+.post{
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.8);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding:5px;
+  height: 60vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message1{
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: rgb(235, 235, 235);
+  color: #878A8C;
+  position: relative;
+  padding:5px;
+  
+	display: inline-block;
+	margin-bottom: 2px;
+	clear: both;
+	padding: 7px 13px;
+	font-size: 15px;
+	border-radius: 15px;
+	line-height: 1.5;
+
+}
+
+.message2{
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: rgb(0,178, 255);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding:5px;
+
+  display: inline-block;
+	margin-bottom: 2px;
+	clear: both;
+	padding: 7px 13px;
+	font-size: 15px;
+	border-radius: 15px;
+	line-height: 1.5;
+}
+
+.send-message{
+  margin-left: 20px;
+  height: 40vh;
+}
+
+.login {
+  background-color: #0079D3;
+  border-color: #0079D3;
+  color: aliceblue;
+  fill: #0079D3;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 15px 16px;
+  opacity: 1;
+  border-radius: 50px;
+  margin: 10px;
+  width: 60%;
+  vertical-align: center;
+}
+
+.duration{
+  color: black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin: 0px;
+  text-align: right;
+  font-size: smaller;
+  padding: 0px 0px 0px 0px;
+  vertical-align: top;
+  border: 0px;
+}
+
+.form-control{
+  height: 100%;
+}
+
+.overhead-text2{
+  text-align: left;
+  font-size: x-large;
+  color: #0079D3;
+}
+
+.header-row{
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.8);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding:5px;
+  text-align: left;
+  width: fit-content;
+}
+.sendMessage {
+  background-color: #05728f;
+  border-color: #05728f;
+  color: aliceblue;
+  fill: #05728f;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  padding: 15px 16px;
+  opacity: 1;
+  border-radius: 50px;
+  margin: 10px;
+  width: 70%;
+}

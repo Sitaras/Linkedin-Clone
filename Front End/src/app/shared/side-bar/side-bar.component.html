@@ -1,0 +1,73 @@
+<div class="sidebar">
+
+    <div *ngIf="!isLoggedIn" ngbDropdown class="float-right">
+        <img src="/assets/linkedin.png">
+    </div>
+    <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
+        <div *ngIf="hasImage()">
+            <img [src]="getImage()">
+        </div>
+        <div *ngIf="!hasImage()">
+            <img src="/assets/default_profile_pic.png" class="testImage">
+        </div>
+    </div>
+    <div *ngIf="!isLoggedIn" ngbDropdown class="float-right">
+        <div style="text-align: center; font-size: 1em">Welcome to LinkedIn Clone home page. Sign Up or Login for new job
+            oportunities!</div>
+    </div>
+    <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
+      <br />
+        <div *ngIf="notEmpty(user.workingExperience)">
+          <div style="text-align: left; font-size: 1.5em">
+            <i class="fas fa-briefcase"></i>
+            <b> Working Experience:</b> <br />
+          </div>
+          <div style="text-align: center; font-size: 1.5em">
+            <p class="bio-text" [innerHtml]="user.workingExperience"></p>
+          </div>
+        </div>
+        <div *ngIf="notEmpty(user.education)">
+          <hr>
+          <div style="text-align: left; font-size: 1.5em">
+            <i class="fas fa-graduation-cap"></i>
+            <b> Education:</b><br />
+          </div>
+          <div style="text-align: center; font-size: 1.5em">
+            <p class="bio-text" [innerHtml]="user.education"></p>
+          </div>
+        </div>
+        <div *ngIf="notEmpty(user.skills)">
+          <hr>
+          <div style="text-align: left; font-size: 1.5em">
+            <i class="fab fa-leanpub"></i>
+            <b> Skills:</b><br />
+          </div>
+          <div style="text-align: center; font-size: 1.5em">
+            <p class="bio-text" [innerHtml]="user.skills"></p>
+          </div>
+          <hr>
+        </div>
+        <div style="text-align: center">
+            <button class="btn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;" (click)="goToUpdateBio()">Update Personal Info</button>
+        </div>
+      <div *ngIf="inJobPosts()">
+        <div style="text-align: center">
+          <button class="btn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;" (click)="goToCreateJobPost()">Create Job Post</button>
+        </div>
+      </div>
+      <div *ngIf="!inJobPosts()">
+        <div style="text-align: center">
+          <button class="btn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; margin-top: 5px; position: relative; width: 250px;" (click)="goToCreatePost()">Create Post</button>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+    <!-- <div style="text-align: center">
+        <button class="btnCreateSublinkedIn" (click)="goToCreateSublinkedIn()">Create SublinkedIn</button>
+    </div> -->
+</div>

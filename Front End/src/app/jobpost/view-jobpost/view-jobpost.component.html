@@ -1,0 +1,95 @@
+<div class="all">
+  <div class="linkedIn-body">
+    <div class="container">
+       <div class="row">
+          <hr />
+          <div class="col-md-9">
+            <div class="row post">
+              <div class="col-md-11">
+              <span class="sublinkedIn-info">
+                <span>Posted by <a class="username" href="/user-profile/{{jobPost.userName}}">{{jobPost.userName}}</a></span>
+                <span> . {{jobPost.duration}}</span>
+              </span>
+                <hr />
+                <div class="post-title">
+                  <div class="field">Job Name:</div>
+                  <p class="post-text">{{jobPost.jobPostName}}</p>
+                </div>
+                <div class="post-title">
+                  <div class="field">Company Name: </div>
+                  <p class="post-text">{{jobPost.companyName}}</p>
+                </div>
+                <div class="post-title" *ngIf="notEmpty(jobPost.skills)">
+                  <div class="field">Needed Skills: </div>
+                  <div class="post-text" [innerHtml]="jobPost.skills"></div>
+                </div>
+                <div class="post-title" *ngIf="notEmpty(jobPost.benefits)">
+                  <div class="field">Job Benefits: </div>
+                  <div class="post-text" [innerHtml]="jobPost.benefits"></div>
+                </div>
+                <div class="post-title" *ngIf="notEmpty(jobPost.otherInfo)">
+                  <div class="field">Other Information: </div>
+                  <div class="post-text" [innerHtml]="jobPost.otherInfo"></div>
+                </div>
+                <hr />
+                <div *ngIf="!isMyPost(jobPost) && !isAdmin()">
+                  <button class="readPost" (click)="applyForJob()">
+                    Apply For Job
+                  </button>
+                  <form class="post-form" [formGroup]="applicationForm" (ngSubmit)="sendApplication()">
+                    <div class="form-group">
+                      <div *ngIf="applyEnabled" >
+                        <editor [formControlName]="'jobApplication'" [init]="{
+                          height: 300,
+                          menubar: false,
+                          plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table paste code help wordcount'
+                          ],
+                          toolbar:
+                            'undo redo | formatselect | bold italic backcolor | \
+                            alignleft aligncenter alignright alignjustify | \
+                            bullist numlist outdent indent | removeformat | help'
+                        }"></editor>
+                        <div style="margin-top: 5px" class="float-right">
+                          <button (click)="discardApplication()" class="btnDiscard">Discard</button>
+                          <button type="submit" class="btnCreatePost">Apply</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div *ngIf="isMyPost(jobPost) && !isAdmin()">
+                  <button class="readPost" (click)="getApplications()">
+                    Show Job Applications
+                  </button>
+                  <div *ngIf="showApplications">
+                    <div style="margin-top: 60px;" *ngFor="let application of applications">
+                      <div class="comment">
+                        <hr />
+                        <div class="username">
+                          <b>Job application from: </b>
+                          <a href="/user-profile/{{application.userName}}">{{application.userName}}</a>
+                        </div>
+                        <div>
+                          <p>{{application.duration}}</p>
+                        </div>
+                        <p class="post-text" [innerHtml]="application.applicationText"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+<!--            <app-side-bar></app-side-bar>-->
+            <!-- <app-sublinkedIn-side-bar></app-sublinkedIn-side-bar> -->
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+

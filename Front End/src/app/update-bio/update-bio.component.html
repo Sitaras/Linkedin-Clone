@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="linkedIn-body" >
+  <div class="container light-style flex-grow-1 container-p-y">
+
+    <h4 class="py-2 mb-4">
+    </h4>
+
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a class="list-group-item list-group-item-action " data-toggle="list"
+            style="cursor: pointer" [ngStyle]="{'font-weight' : isSelected ==  'personal-info' ? 'bold' : 'normal' }">Personal Info</a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+              <div class="card-body">
+                <form class="post-form" [formGroup]="workingExperienceForm" (ngSubmit)="updateWorkingExperience()">
+                  <div class="form-group">
+                    <div class="create-post-heading"><i class="fas fa-briefcase"></i> Working Experience</div>
+                    <hr />
+                    <textarea [formControlName]="'workingExperience'" class="form-control" id="exampleFormControlTextarea1"
+                      rows="3" [placeholder]="getWe()"></textarea>
+                    <span>
+                      <div style="margin-top: 5px" class="float-right">
+                        <button (click)="discardWorkingExperience()" class="btnDiscard">Discard Changes</button>
+                        <button type="submit" class="btnCreatePost">Update Working Experience</button>
+                        <div ngbDropdown class="float-right">
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown">
+                            <button (click)="changeWePrivacy()"
+                              ngbDropdownItem>{{getDropdown(this.currentUser.publicWorkingExperience)}}</button>
+                          </div>
+                          <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
+                            {{getDefault(this.currentUser.publicWorkingExperience)}}
+                          </button>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </form>
+                
+                
+                <form class="post-form" [formGroup]="educationForm" (ngSubmit)="updateEducation()">
+                  <div class="form-group">
+              
+                    <div class="create-post-heading"><i class="fas fa-graduation-cap"></i> Education</div>
+                    <hr />
+                    <textarea [formControlName]="'education'" class="form-control" id="exampleFormControlTextarea1"
+                      rows="3" [placeholder]="getEducation()"></textarea>
+                    <span>
+                      <div style="margin-top: 5px" class="float-right">
+                        <button (click)="discardEducation()" class="btnDiscard">Discard Changes</button>
+                        <button type="submit" class="btnCreatePost">Update Education</button>
+                        <div ngbDropdown class="float-right">
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown">
+                            <button (click)="changeEducationPrivacy()"
+                              ngbDropdownItem>{{getDropdown(this.currentUser.publicEducation)}}</button>
+                          </div>
+                          <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
+                            {{getDefault(this.currentUser.publicEducation)}}
+                          </button>
+                        </div>
+                        
+                     
+                      </div>
+                    </span>
+                  </div>
+                </form>
+
+                <form class="post-form" [formGroup]="skillsForm" (ngSubmit)="updateSkills()">
+                  <div class="form-group">
+                    <div class="create-post-heading"><i class="fab fa-leanpub"></i> Skills</div>
+                    <hr />
+                    <textarea [formControlName]="'skills'" class="form-control" id="exampleFormControlTextarea1" rows="3" [placeholder]="getSkills()"></textarea>
+                    <span>
+                      <div style="margin-top: 5px" class="float-right">
+                        <button (click)="discardSkills()" class="btnDiscard">Discard Changes</button>
+                        <button type="submit" class="btnCreatePost">Update Skills</button>
+                        <div ngbDropdown class="float-right">
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown">
+                            <button (click)="changeSkillsPrivacy()" ngbDropdownItem>{{getDropdown(this.currentUser.publicSkills)}}</button>
+                          </div>
+                          <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
+                            {{getDefault(this.currentUser.publicSkills)}}
+                          </button>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </form>        
+              </div>
+
+            </div>
+          
+           
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

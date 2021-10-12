@@ -1,0 +1,69 @@
+<div class="all">
+  <div class="linkedIn-body">
+    <div class="container">
+      <div class="row">
+        <h4 class="py-2 mb-4">
+        </h4>
+        <div class="col-md-9">
+          <div class="row post" style="background-color: white;" *ngFor="let post of getPosts()">
+              <div class="col-md-11">
+                <span class="sublinkedIn-info">
+                    <span>Posted by <a class="username" href="/user-profile/{{post.userName}}">{{post.userName}}</a></span>
+                    <span> . {{post.duration}}</span>
+                </span>
+                <hr />
+
+                <div class="post-title">
+                  <div class="field">Job Name:</div>
+                  <p class="post-text">{{post.jobPostName}}</p>
+                </div>
+                <div class="post-title">
+                  <div class="field">Company Name: </div>
+                  <p class="post-text">{{post.companyName}}</p>
+                </div>
+                <div class="post-title" *ngIf="notEmpty(post.skills)">
+                  <div class="field">Needed Skills: </div>
+                  <div class="post-text" [innerHtml]="post.skills"></div>
+                </div>
+                <div class="post-title" *ngIf="notEmpty(post.benefits)">
+                  <div class="field">Job Benefits: </div>
+                  <div class="post-text" [innerHtml]="post.benefits"></div>
+                </div>
+                <div class="post-title" *ngIf="notEmpty(post.otherInfo)">
+                  <div class="field">Other Information: </div>
+                  <div class="post-text" [innerHtml]="post.otherInfo"></div>
+                </div>
+                <hr />
+                <span>
+                  <div *ngIf="!isMyPost(post)">
+                    <button class="readPost" (click)="goToJobPost(post.id)">
+                      Apply For Job
+                    </button>
+                  </div>
+                  <div *ngIf="isMyPost(post)">
+                    <button class="readPost" (click)="goToJobPost(post.id)">
+                      See Applications
+                    </button>
+                  </div>
+                </span>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <app-side-bar></app-side-bar>
+          <div *ngIf="showMyPosts">
+            <div style="text-align: center">
+              <button class="btn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; position: relative; width: 250px;" (click)="showMyJobPosts()">Show All The Job Post</button>
+            </div>
+          </div>
+          <div *ngIf="!showMyPosts">
+            <div style="text-align: center">
+              <button class="btn btn-outline-primary" style="background-color: rgb(43, 43, 184); color: white; position: relative; width: 250px;" (click)="showMyJobPosts()">Show Only My Job Post</button>
+            </div>
+          </div>
+          <!-- <app-sublinkedIn-side-bar></app-sublinkedIn-side-bar> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

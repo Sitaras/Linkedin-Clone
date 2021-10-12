@@ -1,0 +1,80 @@
+<div class="all">
+    <div class="linkedIn-body">
+        <div class="container">
+            <div class="col-md-10" style="float:none;margin:auto;">
+                <h4 class="py-2 mb-4">
+                </h4>
+                <div *ngIf="hasNoFriends()">
+                  <div class="row user">
+                    <div class="field" style="color: #0079D3;">User: <a style="font: bold;color: blue" href="user-profile/{{this.name}}">{{this.name}}</a> has no friends</div>
+                  </div>
+                </div>
+                <div *ngFor="let user of network">
+                  <div *ngIf="showProfile(user.username)">
+                    <div class="card overflow-hidden">
+                      <div class="row no-gutters row-bordered row-border-light">
+                        <div class="col-md-3 pt-0">
+                          <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action ">
+                              <a href="user-profile/{{user.username}}" class="username"><b> {{user.username}}</b></a></a>
+                            <br>
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="tab-content">
+
+                            <div class="card-body media align-items-center">
+                              <div *ngIf="hasImage(user)">
+                                <img [src]="user.imageUrl" class="testImage">
+                              </div>
+                              <div *ngIf="!hasImage(user)">
+                                <img src="/assets/default_profile_pic.png" class="testImage">
+                              </div>
+                            </div>
+                            <hr class="border-light m-0">
+
+                            <div class="card-body">
+
+
+                              <span style="font-size: x-large">
+                                <p class="email">Email : {{user.email}}</p>
+                              </span>
+                              <span style="font-size: x-large">
+                                <p class="phone">Phone : {{user.phone}}</p>
+                              </span>
+                              <hr>
+                              <div *ngIf="notEmpty(user.workingExperience)">
+                                <span style="font-size: x-large"><i class="fas fa-briefcase"></i> <b> Working
+                                    Experience:</b></span>.<br />
+                                <div>
+                                  <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.workingExperience"></p>
+                                </div>
+                              </div>
+                              <div *ngIf="notEmpty(user.education)">
+                                <hr>
+                                <span style="font-size: x-large"><i class="fas fa-graduation-cap"></i> <b> Education:</b></span>.<br />
+                                <div>
+                                  <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.education"></p>
+                                </div>
+                              </div>
+                              <div *ngIf="notEmpty(user.skills)">
+                                <hr>
+                                <span style="font-size: x-large"><i class="fab fa-leanpub"></i> <b> Skills:</b></span>.<br />
+                                <div>
+                                  <p class="bio-text" style="margin-left: 20px;font-size: large" [innerHtml]="user.skills"></p>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+.post-title {
+  font-size: 28px;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.post-title:hover {
+  opacity: 0.6;
+}
+
+.post-url {
+  color: black;
+}
+
+.username{
+    color: gray;
+}
+
+.post-text{
+    margin-top: 10px;
+}
+
+.post{
+    --post-line-color: #ccc;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.8);
+    color: #878A8C;
+    position: relative;
+    border-radius: 4px;
+    padding:5px;
+}
+
+.comment{
+    --post-line-color: #ccc;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.8);
+    color: #878A8C;
+    position: relative;
+    border-radius: 4px;
+    padding:5px;
+}
+
+
+
+.login {
+    background-color: #0079D3;
+    border-color: #0079D3;
+    color: aliceblue;
+    fill: #0079D3;
+    border: 1px solid;
+    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 24px;
+    text-transform: uppercase;
+    padding: 15px 16px;
+    opacity: 1;
+    border-radius: 50px;
+    margin: 10px;
+    width: 20%;
+  }
+
+  .testImage{
+    width: auto;
+    max-width: 690px;
+    height: 600px;
+    margin-top: 1pc;
+    margin-bottom: 2pc;
+    align-self: left;
+  }
+
+  .videoPlayer{
+    width: auto;
+    max-width: 690px;
+    height: 600px;
+    margin-bottom: 2pc;
+    align-self: left;
+  }
+
+.thumbnail {
+    padding:0px;
+}
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}

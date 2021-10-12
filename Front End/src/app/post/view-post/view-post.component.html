@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="container" >
+        <div class="col-md-9" >
+            <div class="row post" style="background-color: white;">
+                <div class="col-md-1" *ngif="!isAdmin()">
+                    <app-vote-button [post]="post"></app-vote-button>
+                </div>
+              <div class="col-md-1" *ngif="isAdmin()">
+
+              </div>
+                <div class="col-md-11">
+                    <span>
+                        <span> . Posted
+                            <span> {{post.duration}} </span>
+                            by
+                            <a class="username" href="/user-profile/{{post.userName}}">{{post.userName}}</a>
+                        </span>
+                    </span>
+                    <hr />
+                    <a class="post-title">{{post.postName}}</a>
+                    <div>
+                        <p class="post-text" [innerHtml]="post.description"></p>
+                    </div>
+                    <div *ngIf="hasImage(post)">
+                        <hr />
+                        <div *ngIf="hasVideo(post)">
+                            <video class="videoPlayer" controls>
+                                    <source [src]="post.url" type="video/mp4">
+                                    <source [src]="post.url" type="video/ogg">
+                                    Your browser does not support HTML video.
+                            </video>
+                        </div>
+                        <div *ngIf="!hasVideo(post)">
+                            <img [src]="post.url" class="testImage">
+                        </div>
+                    </div>
+
+                    <div class="post-comment" *ngIf="!isAdmin()">
+                        <hr />
+                        <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+                            <div class="form-group">
+                                <textarea class="form-control" [formControlName]="'text'"
+                                    placeholder="Your Thoughts?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+                        </form>
+
+                    </div>
+                    <hr/>
+                    <div style="margin-top: 10px;" *ngFor="let comment of comments">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                  <div class="thumbnail">
+                                    <img class="img-responsive user-photo" [src]="getProfilePic(comment.userName)">
+                                  </div><!-- /thumbnail -->
+                                </div><!-- /col-sm-1 -->
+                                <div class="col-sm-5">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <a href="/user-profile/{{comment.userName}}">{{comment.userName}} </a><span class="text-muted">{{comment.duration}}</span>
+                                        </div>
+                                        <div class="panel-body"> {{comment.text}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" *ngIf="!isAdmin()">
+            <app-side-bar ></app-side-bar>
+        </div>
+</div>
+
