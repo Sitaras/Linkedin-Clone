@@ -1,8 +1,8 @@
 # Linkedin-Clone
 
 ### Team 
-- [Ioannis Kapetangeorgis](https://github.com/giannhskp)
-- [Dimitrios Sitaras](https://github.com/Sitaras)
+- [Giannis Kapetangeorgis](https://github.com/giannhskp)
+- [Dimitris Sitaras](https://github.com/Sitaras)
 
 
 
